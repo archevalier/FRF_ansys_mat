@@ -1,0 +1,28 @@
+*get,harm_num,active,0,set,sbst
+!获取选中节点的编号
+*get,node_num,node,,count
+*dim, node_id ,,node_num ,1
+
+*do,ii,1,node_num
+  *GET,node_id(ii,1),node,,num,min
+  NSEL,U, , ,     node_id(ii,1)
+*enddo
+
+/POST26
+NUMVAR,200 !设定post26中的变量数目
+*do,ii,1,node_num
+NSOL,ii+1, node_id(ii,1) ,U,z,
+*enddo
+
+*dim, dis ,, harm_num ,node_num+1
+*do,ii,1,node_num+1
+  VGET,dis(1,ii),ii,,0  !第二个参数的实部，虚部最后一项选1
+*enddo
+
+!*cfopen,nodedis,fre
+!*vwrite,dis(1,1),dis(1,2),dis(1,3),dis(1,4),dis(1,5)
+!(5e20.8) 
+!*cfclos 
+!*MWRITE,dis,nodedis,TXT,,JIK,node_num+1,harm_num
+*MWRITE,dis,nodedis,TXT,,JIK,node_num+1,harm_num
+(100e20.8)
