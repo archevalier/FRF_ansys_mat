@@ -3,7 +3,7 @@ ansy = load('nodedis.txt');
 [M,N] = size(ansy);
 freq_num = M;
 node_num = N-1;
-node_dis = ansy(:,2:node_num);
+node_dis = ansy(:,2:N);
 %M为频率点数，N为基座连接点数
 %%
 l_ref = 1e-12; %速度参考值
